@@ -40,7 +40,7 @@ class App extends Component {
                 <Header />
                 <div className="d-flex flex-row flex-fill pt-4 p-2" >
                     <MovieList />
-                    <MovieDetails />
+                    <MovieDetails movie={ this.state.movies[this.state.selectedMovie] }/>
                 </div>
             </div>
         );
