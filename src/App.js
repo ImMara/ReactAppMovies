@@ -6,10 +6,12 @@ import MovieDetails from "./components/movie-details/MovieDetails";
 function App() {
   return (
     <div className="App">
-        <Header />
-        <div className={"d-flex flex-row"}>
-            <MovieList />
-            <MovieDetails />
+        <div className={"App d-flex flex-column"}>
+            <Header />
+            <div className={"d-flex flex-row flex-fill pt-5 p-2"}>
+                <MovieList />
+                <MovieDetails />
+            </div>
         </div>
     </div>
   );
