@@ -3,9 +3,7 @@ import MovieList from "./components/movie-list/MovieList";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import {Component} from "react";
 import Loading from "./components/utils/Loading";
-import data from "./data";
-import * as axios from "axios";
-import apiMovie from "./components/conf/api.movie";
+import apiMovie from "./conf/api.movie";
 
 class App extends Component {
 
@@ -16,14 +14,6 @@ class App extends Component {
             selectedMovie:0,
             loaded:false
         }
-        setTimeout( ()=>{
-            this.setState(
-                {
-                    movies: data,
-                    loaded:true
-                })
-        },1000)
-
     }
 
     updateSelectedMovie = (index)=>{
@@ -34,8 +24,24 @@ class App extends Component {
 
     componentDidMount() {
        apiMovie.get('/discover/movie')
-           .then(response => console.log(response))
+           .then(response => response.data.results)
+           .then( moviesApi => {
+               const movies = moviesApi.map( element => ({
+                   img:"https://image.tmdb.org/t/p/w500"+element.poster_path,
+                   title:element.title,
+                   details:`${element.realease_date} | ${ element.vote_average }/10 ( ${element.vote_count} )`,
+                   description:element.overview
+               }))
+               this.updateMovies(movies)
+           } )
            .catch(error => console.log(error))
+    }
+
+    updateMovies(movies){
+        this.setState({
+            movies,
+            loaded:true
+        })
     }
 
     render() {

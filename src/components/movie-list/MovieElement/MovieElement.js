@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import Style from '../MovieElement/MovieElement.module.scss'
 
+const style = {
+    width:"480px",
+    height:"280px",
+    overflow:"hidden",
+    margin:"0px 5px 10ox 5px",
+    cursor:"pointer"
+}
+
 export default class MovieElement extends Component {
 
     mouseEnter= ()=>{
@@ -10,8 +18,8 @@ export default class MovieElement extends Component {
     render() {
         return (
 
-                <div onMouseEnter={ this.mouseEnter } className={"border d-flex" + Style.container }>
-                    <img alt="film" src={this.props.movie.img} />
+                <div onMouseEnter={ this.mouseEnter } className={"border d-flex bg-light"} style={style}>
+                    <img alt="film" width={'185'} src={this.props.movie.img} />
                     <div className="flex-fill d-flex flex-column p-3">
                         <h5>{this.props.movie.title}</h5>
                         <hr className="w-100" />
