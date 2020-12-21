@@ -4,6 +4,8 @@ import MovieDetails from "./components/movie-details/MovieDetails";
 import {Component} from "react";
 import Loading from "./components/utils/Loading";
 import data from "./data";
+import * as axios from "axios";
+import apiMovie from "./components/conf/api.movie";
 
 class App extends Component {
 
@@ -20,7 +22,7 @@ class App extends Component {
                     movies: data,
                     loaded:true
                 })
-        },2000)
+        },1000)
 
     }
 
@@ -28,6 +30,12 @@ class App extends Component {
         this.setState({
             selectedMovie: index
         })
+    }
+
+    componentDidMount() {
+       apiMovie.get('/discover/movie')
+           .then(response => console.log(response))
+           .catch(error => console.log(error))
     }
 
     render() {
