@@ -4,6 +4,7 @@ import MovieDetails from "./components/movie-details/MovieDetails";
 import {Component} from "react";
 import Loading from "./components/utils/Loading";
 import apiMovie from "./conf/api.movie";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 class App extends Component {
 
@@ -14,12 +15,6 @@ class App extends Component {
             selectedMovie:0,
             loaded:false
         }
-    }
-
-    updateSelectedMovie = (index)=>{
-        this.setState({
-            selectedMovie: index
-        })
     }
 
     componentDidMount() {
@@ -37,10 +32,16 @@ class App extends Component {
            .catch(error => console.log(error))
     }
 
-    updateMovies(movies){
+    updateMovies = (movies) => {
         this.setState({
             movies,
-            loaded:true
+            loaded: true
+        })
+    }
+
+    updateSelectedMovie = (index)=>{
+        this.setState({
+            selectedMovie: index
         })
     }
 
@@ -48,6 +49,7 @@ class App extends Component {
         return (
             <div className="App d-flex flex-column">
                 <Header />
+                <SearchBar/>
                 { this.state.loaded ? (
                     <div className="d-flex flex-row flex-fill pt-4 p-2" >
                         <MovieList movies={ this.state.movies } updateSelectedMovie={ this.updateSelectedMovie }/>
