@@ -9,7 +9,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 class App extends Component {
 
     constructor(props) {
-        super(props);
+        super(props)
         this.state = {
             movies:null,
             selectedMovie:0,
@@ -24,7 +24,7 @@ class App extends Component {
                const movies = moviesApi.map( element => ({
                    img:"https://image.tmdb.org/t/p/w500"+element.poster_path,
                    title:element.title,
-                   details:`${element.realease_date} | ${ element.vote_average }/10 ( ${element.vote_count} )`,
+                   details:`${element.release_date} | ${ element.vote_average }/10 ( ${element.vote_count} )`,
                    description:element.overview
                }))
                this.updateMovies(movies)
