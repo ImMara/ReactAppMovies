@@ -49,7 +49,7 @@ class App extends Component {
         return (
             <div className="App d-flex flex-column">
                 <Header />
-                <SearchBar/>
+                <SearchBar updateMovies={ this.updateMovies }/>
                 { this.state.loaded ? (
                     <div className="d-flex flex-row flex-fill pt-4 p-2" >
                         <MovieList movies={ this.state.movies } updateSelectedMovie={ this.updateSelectedMovie }/>

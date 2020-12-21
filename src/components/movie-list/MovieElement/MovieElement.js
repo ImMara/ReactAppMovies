@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Style from '../MovieElement/MovieElement.module.scss'
 
 const style = {
     width:"480px",
@@ -17,7 +16,6 @@ export default class MovieElement extends Component {
 
     render() {
         return (
-
                 <div onMouseEnter={ this.mouseEnter } className={"border d-flex bg-light"} style={style}>
                     <img alt="film" width={'185'} src={this.props.movie.img} />
                     <div className="flex-fill d-flex flex-column p-3">
