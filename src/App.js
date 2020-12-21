@@ -3,7 +3,7 @@ import MovieList from "./components/movie-list/MovieList";
 import MovieDetails from "./components/movie-details/MovieDetails";
 import {Component} from "react";
 import Loading from "./components/utils/Loading";
-import apiMovie from "./conf/api.movie";
+import apiMovie,{apiMovieMap} from "./conf/api.movie";
 import SearchBar from "./components/SearchBar/SearchBar";
 
 class App extends Component {
@@ -21,12 +21,7 @@ class App extends Component {
        apiMovie.get('/discover/movie')
            .then(response => response.data.results)
            .then( moviesApi => {
-               const movies = moviesApi.map( element => ({
-                   img:"https://image.tmdb.org/t/p/w500"+element.poster_path,
-                   title:element.title,
-                   details:`${element.release_date} | ${ element.vote_average }/10 ( ${element.vote_count} )`,
-                   description:element.overview
-               }))
+               const movies = moviesApi.map(apiMovieMap)
                this.updateMovies(movies)
            } )
            .catch(error => console.log(error))

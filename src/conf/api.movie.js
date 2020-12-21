@@ -10,3 +10,11 @@ apiMovie.interceptors.request.use(req =>{
 })
 
 export default apiMovie
+
+
+export const apiMovieMap  =  (element) =>({
+        img:"https://image.tmdb.org/t/p/w500"+element.poster_path,
+        title:element.title,
+        details:`${element.release_date} | ${ element.vote_average }/10 ( ${element.vote_count} )`,
+        description:element.overview
+})
